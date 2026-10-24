@@ -254,6 +254,11 @@ main,
   stroke-width: 2;
   stroke-dasharray: 4 3;
 }
+.penanda-ujung {
+  fill: var(--ujung);
+  stroke: var(--laut);
+  stroke-width: 2.5;
+}
 .nama-peta {
   font: 700 12px var(--huruf);
   fill: var(--tinta);

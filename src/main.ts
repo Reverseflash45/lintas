@@ -166,11 +166,21 @@ function gambarPeta() {
       const [x, y] = jalur.centroid(f);
       if (!Number.isFinite(x) || x < 0 || x > lebar || y < 0 || y > tinggi) return "";
       const ujung = i === t.awal || i === t.akhir;
-      return `<text class="nama-peta${ujung ? " ujung" : ""}" x="${x}" y="${y}" text-anchor="middle">${esc(pendek(nama(i)))}</text>`;
+      return `<text class="nama-peta${ujung ? " ujung" : ""}" x="${x}" y="${ujung ? y - 12 : y + 4}" text-anchor="middle">${esc(pendek(nama(i)))}</text>`;
+    })
+    .join("");
+  // Kota kecil sebagai ujung nyaris tak terlihat, jadi beri penanda di titik tengahnya.
+  const penanda = [t.awal, t.akhir]
+    .map((i) => {
+      const f = perId.get(g.ids[i]);
+      if (!f) return "";
+      const [x, y] = jalur.centroid(f);
+      return Number.isFinite(x) ? `<circle class="penanda-ujung" cx="${x}" cy="${y}" r="6"/>` : "";
     })
     .join("");
   wadah.innerHTML = `<svg viewBox="0 0 ${lebar} ${tinggi}" width="${lebar}" height="${tinggi}">
     ${fitur.features.map((f) => `<path class="${kelas(f.properties.id)}" d="${jalur(f) ?? ""}"/>`).join("")}
+    ${penanda}
     ${label}
   </svg>`;
 }
