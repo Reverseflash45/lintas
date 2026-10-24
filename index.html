@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lintas — teka-teki rute antarkabupaten harian</title>
+    <meta
+      name="description"
+      content="Setiap hari dua kabupaten/kota. Tebak wilayah di antaranya sampai jalurnya tersambung. Teka-teki geografi harian untuk 514 kabupaten/kota Indonesia."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lintas-id.vercel.app/" />
+    <meta property="og:title" content="Lintas — teka-teki rute antarkabupaten harian" />
+    <meta property="og:description" content="Dua kabupaten/kota, satu jalur. Tebak wilayah di antaranya." />
+    <meta property="og:image" content="https://lintas-id.vercel.app/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://lintas-id.vercel.app/" />
+    <meta name="theme-color" content="#f3f4ef" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#101412" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/ikon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="kepala">
+      <a class="merek" href="/">
+        <svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="6" cy="21" r="3.5" class="m-ujung" /><circle cx="22" cy="7" r="3.5" class="m-ujung" /><path d="M8.5 18.5 12 15l4 1 3.5-6.5" class="m-garis" /></svg>
+        Lintas
+      </a>
+      <nav><a href="#cara">Cara main</a><a href="#statistik">Statistik</a></nav>
+    </header>
+
+    <main>
+      <section class="permainan" aria-labelledby="judul">
+        <div class="baris-atas">
+          <p class="label" data-nomor></p>
+          <div class="pilihan" role="group" aria-label="Mode">
+            <button type="button" data-mode="harian" aria-pressed="true">Harian</button>
+            <button type="button" data-mode="latihan" aria-pressed="false">Latihan</button>
+          </div>
+        </div>
+        <h1 id="judul" class="soal" data-soal></h1>
+        <p class="info" data-info></p>
+
+        <div class="papan">
+          <div class="peta" id="peta" role="img" aria-label="Peta wilayah di sekitar rute"></div>
+          <div class="sisi">
+            <form class="tebak" id="tebak" autocomplete="off">
+              <div class="combo">
+                <label for="masukan" class="sr-only">Kabupaten atau kota</label>
+                <input id="masukan" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="saran" placeholder="Tebak kabupaten atau kota" spellcheck="false" />
+                <ul id="saran" role="listbox" class="saran" hidden></ul>
+              </div>
+              <button type="submit" class="tombol utama">Tebak</button>
+            </form>
+            <p class="pesan" data-pesan aria-live="polite"></p>
+            <div class="sisa" data-sisa aria-label="Sisa tebakan"></div>
+            <ol class="daftar-tebakan" data-tebakan></ol>
+            <button type="button" class="tombol" id="petunjuk">Petunjuk (memakai 1 tebakan)</button>
+            <div class="selesai" data-selesai hidden></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bagian" id="cara" aria-labelledby="judul-cara">
+        <h2 id="judul-cara">Cara main</h2>
+        <ol class="cara">
+          <li>Setiap hari ada dua kabupaten/kota di satu pulau. Tebak wilayah di antara keduanya sampai terbentuk jalur yang tersambung lewat perbatasan darat.</li>
+          <li>Jumlah tebakan terbatas: wilayah di rute terpendek ditambah empat. Tebakan boleh tidak berurutan.</li>
+          <li>
+            Warna menunjukkan seberapa jauh tebakanmu dari rute terpendek:
+            <span class="contoh-warna"><i class="n-rute"></i>di rute terpendek</span>
+            <span class="contoh-warna"><i class="n-dekat"></i>dekat (1–2 langkah memutar)</span>
+            <span class="contoh-warna"><i class="n-agak"></i>agak jauh (3–4)</span>
+            <span class="contoh-warna"><i class="n-jauh"></i>jauh atau beda pulau</span>
+          </li>
+          <li>Teka-teki baru setiap pukul 00.00 WIB. Mode latihan memberi teka-teki acak tanpa batas.</li>
+        </ol>
+      </section>
+
+      <section class="bagian" id="statistik" aria-labelledby="judul-stat">
+        <h2 id="judul-stat">Statistik harianmu</h2>
+        <dl class="statistik" data-statistik></dl>
+        <p class="catatan">Tersimpan di peramban ini saja.</p>
+      </section>
+
+      <section class="bagian tentang" aria-labelledby="judul-tentang">
+        <h2 id="judul-tentang">Tentang</h2>
+        <p>
+          Dua wilayah dianggap bertetangga bila berbagi garis batas darat pada peta batas kabupaten/kota geoBoundaries (BPS,
+          WFP, OCHA ROAP, CC BY 3.0 IGO) yang sudah disederhanakan; batas laut dan jembatan tidak dihitung. Penyederhanaan bisa
+          membuat sepasang wilayah yang hanya bersentuhan di satu titik tidak terhitung bertetangga. Terinspirasi Travle.
+        </p>
+      </section>
+    </main>
+
+    <footer class="kaki">
+      <p>Dibuat oleh Rafi Fernandito · <a href="https://github.com/Reverseflash45/lintas">kode sumber</a></p>
+    </footer>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
