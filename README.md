@@ -2,7 +2,7 @@
 
 ![Lintas: dari Kab. Sukoharjo ke Kab. Indramayu](public/og.png)
 
-**[Main Lintas](https://lintas-id.vercel.app)**
+**[Main Lintas](https://lintas.raffstw.my.id)**
 
 Teka-teki geografi harian untuk 514 kabupaten/kota Indonesia, terinspirasi Travle. Setiap
 hari ada dua kabupaten/kota di satu pulau; tebak wilayah di antara keduanya sampai jalurnya

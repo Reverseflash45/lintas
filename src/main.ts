@@ -195,7 +195,7 @@ function teksBagikan() {
   const { t } = k;
   const kotak = k.tebakan.map((x) => (k.petunjuk.includes(x) ? "💡" : EMOJI[nilai(t, x)])).join("");
   const skor = k.selesai === "menang" ? `${k.tebakan.length}/${t.batasTebakan}` : `X/${t.batasTebakan}`;
-  return `Lintas #${k.nomor} ${skor}\n${nama(t.awal)} → ${nama(t.akhir)}\n${kotak}\nlintas-id.vercel.app`;
+  return `Lintas #${k.nomor} ${skor}\n${nama(t.awal)} → ${nama(t.akhir)}\n${kotak}\nlintas.raffstw.my.id`;
 }
 
 function gambarSelesai() {
