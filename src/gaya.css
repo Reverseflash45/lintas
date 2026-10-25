@@ -1,49 +1,29 @@
 :root {
-  color-scheme: light;
-  --kertas: #f3f4ef;
-  --kertas-2: #e9ebe3;
-  --kertas-3: #dcdfd4;
-  --tinta: #16201c;
-  --tinta-2: #414b46;
-  --samar: #5f6863;
-  --garis: #d3d6cc;
-  --garis-kuat: #aeb3a7;
-  --aksen: #0f5c4d;
-  --wilayah: #dfe1d8;
-  --wilayah-garis: #f3f4ef;
-  --laut: #eceee7;
-  --sorot: #2f4fa3;
-  /* penilaian tebakan: satu rona, makin gelap makin dekat rute (divalidasi ordinal) */
-  --n-rute: #0f5c4d;
-  --n-dekat: #2f8f78;
-  --n-agak: #72b5a0;
-  --n-jauh: #b9b4a8;
-  --ujung: #16201c;
-  --judul: "Bricolage Grotesque Variable", system-ui, sans-serif;
-  --huruf: "DM Sans Variable", system-ui, sans-serif;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --kertas: #101412;
-    --kertas-2: #171c19;
-    --kertas-3: #212823;
-    --tinta: #e9ede7;
-    --tinta-2: #c0c6c0;
-    --samar: #929a94;
-    --garis: #28302b;
-    --garis-kuat: #3e4842;
-    --aksen: #86d6bc;
-    --wilayah: #222925;
-    --wilayah-garis: #101412;
-    --laut: #131815;
-    --sorot: #8fb0ff;
-    --n-rute: #86d6bc;
-    --n-dekat: #2f9479;
-    --n-agak: #1f5a4c;
-    --n-jauh: #4a4d49;
-    --ujung: #e9ede7;
-  }
+  /* rambu penunjuk arah: aspal gelap, papan hijau berbingkai putih, marka kuning */
+  color-scheme: dark;
+  --kertas: #2e3133;
+  --kertas-2: #373b3d;
+  --kertas-3: #44494c;
+  --tinta: #f4f6f5;
+  --tinta-2: #c9cfd2;
+  --samar: #a4acb0;
+  --garis: #44494c;
+  --garis-kuat: #5f666a;
+  --aksen: #ffc400;
+  --rambu: #00703c;
+  --rambu-tua: #00552d;
+  --wilayah: #3a3e41;
+  --wilayah-garis: #2b2e30;
+  --laut: #25282a;
+  --sorot: #8fd3ff;
+  /* penilaian tebakan: satu rona hijau rambu, makin terang makin dekat rute (divalidasi ordinal di atas --wilayah) */
+  --n-rute: #a6ecc0;
+  --n-dekat: #4cc285;
+  --n-agak: #2b8a5c;
+  --n-jauh: #6f7478;
+  --ujung: #ffc400;
+  --judul: "Overpass", "Arial Narrow", sans-serif;
+  --huruf: "Overpass", system-ui, sans-serif;
 }
 
 *,
@@ -53,9 +33,12 @@
 }
 body {
   margin: 0;
-  background: var(--kertas);
   color: var(--tinta);
   font: 400 16px/1.6 var(--huruf);
+  /* butir aspal */
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    var(--kertas);
 }
 a {
   color: inherit;
@@ -92,8 +75,8 @@ input {
 h1,
 h2 {
   font-family: var(--judul);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 900;
+  letter-spacing: -0.01em;
 }
 h2 {
   margin: 0;
@@ -194,20 +177,31 @@ main,
   background: var(--tinta);
   color: var(--kertas);
 }
+/* soal sebagai papan penunjuk arah hijau */
 .soal {
-  margin: 12px 0 0;
-  font-size: clamp(30px, 4.6vw, 54px);
+  display: inline-block;
+  margin: 14px 0 0;
+  padding: 0.38em 0.6em 0.28em;
+  border-radius: 14px;
+  background: var(--rambu);
+  color: #ffffff;
+  box-shadow: inset 0 0 0 4px var(--rambu), inset 0 0 0 7px #ffffff, 0 10px 0 -2px rgb(0 0 0 / 0.35);
+  font-size: clamp(26px, 4.2vw, 50px);
   font-weight: 600;
-  line-height: 1.08;
+  line-height: 1.1;
+  text-wrap: balance;
 }
 .soal b {
-  font-weight: 800;
+  font-weight: 900;
 }
 .panah {
-  color: var(--aksen);
+  display: inline-block;
+  margin: 0 0.12em;
+  color: #ffffff;
+  font-weight: 900;
 }
 .info {
-  margin: 8px 0 0;
+  margin: 16px 0 0;
   color: var(--tinta-2);
 }
 .papan {
@@ -221,6 +215,7 @@ main,
   overflow: hidden;
   border-radius: 18px;
   background: var(--laut);
+  box-shadow: inset 0 0 0 1px var(--garis-kuat);
 }
 .peta svg {
   display: block;
@@ -331,8 +326,11 @@ main,
   cursor: pointer;
 }
 .tombol.utama {
-  background: var(--tinta);
-  color: var(--kertas);
+  /* kuning rambu peringatan */
+  border-color: var(--aksen);
+  background: var(--aksen);
+  color: #1b1d1e;
+  font-weight: 800;
 }
 .tombol:disabled {
   opacity: 0.4;
@@ -475,4 +473,10 @@ main,
   .statistik {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+/* marka jalan: garis putus kuning di bawah kepala halaman */
+.kepala {
+  border-bottom: 0;
+  background: linear-gradient(90deg, var(--aksen) 0 50%, transparent 50%) left bottom / 44px 4px repeat-x;
 }

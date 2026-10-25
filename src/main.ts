@@ -1,5 +1,7 @@
-import "@fontsource-variable/bricolage-grotesque";
-import "@fontsource-variable/dm-sans";
+import "@fontsource/overpass/400.css";
+import "@fontsource/overpass/600.css";
+import "@fontsource/overpass/800.css";
+import "@fontsource/overpass/900.css";
 import "./gaya.css";
 import type { FeatureCollection, Geometry } from "geojson";
 import { geoMercator, geoPath } from "d3-geo";
@@ -108,7 +110,7 @@ function render() {
   const akhir = DAERAH[g.ids[t.akhir]];
   $("[data-nomor]").textContent = k.mode === "harian" ? `Lintas #${k.nomor}` : "Latihan";
   $("[data-soal]").innerHTML = `Dari <b>${esc(awal.nama)}</b> <span class="panah">→</span> <b>${esc(akhir.nama)}</b>`;
-  $("[data-info]").textContent = `${awal.prov === akhir.prov ? awal.prov : `${awal.prov} ke ${akhir.prov}`} · rute terpendek melewati ${t.langkah - 1} wilayah · ${t.batasTebakan} tebakan`;
+  $("[data-info]").textContent = `${awal.prov === akhir.prov ? awal.prov : `${awal.prov} ke ${akhir.prov}`}, rute terpendek melewati ${t.langkah - 1} wilayah, ${t.batasTebakan} tebakan`;
   $("[data-sisa]").innerHTML = Array.from({ length: t.batasTebakan }, (_, n) => {
     const x = k.tebakan[n];
     return `<i class="${x != null ? `n-${nilai(t, x)}` : "kosong"}"></i>`;
