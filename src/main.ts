@@ -115,6 +115,7 @@ function render() {
     const x = k.tebakan[n];
     return `<i class="${x != null ? `n-${nilai(t, x)}` : "kosong"}"></i>`;
   }).join("");
+  $("[data-sisa]").setAttribute("aria-label", `Sisa tebakan: ${t.batasTebakan - k.tebakan.length} dari ${t.batasTebakan}`);
   $("[data-tebakan]").innerHTML = [...k.tebakan]
     .reverse()
     .map((x) => {
