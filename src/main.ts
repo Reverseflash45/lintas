@@ -4,7 +4,8 @@ import "@fontsource/overpass/800.css";
 import "@fontsource/overpass/900.css";
 import "./gaya.css";
 import type { FeatureCollection, Geometry } from "geojson";
-import { geoMercator, geoPath } from "d3-geo";
+import { geoMercator } from "d3-geo";
+import { jalurDatar, titikSudut } from "./datar";
 import { feature } from "topojson-client";
 import type { GeometryCollection, Topology } from "topojson-specification";
 import dataDaerah from "./data/daerah.json";
@@ -150,9 +151,9 @@ function gambarPeta() {
       [24, 24],
       [lebar - 24, tinggi - 24],
     ],
-    bingkai,
+    titikSudut(bingkai),
   );
-  const jalur = geoPath(proyeksi);
+  const jalur = jalurDatar(proyeksi);
   const kelas = (id: string) => {
     const i = g.indeks.get(id);
     if (i == null) return "wilayah";
