@@ -194,6 +194,22 @@ main,
 .soal b {
   font-weight: 900;
 }
+/* sebelum teka-teki dimuat: papan rambu kosong setinggi isinya nanti (2 baris di HP, 1 baris di layar lebar) */
+.soal:empty {
+  width: min(100%, 14em);
+  min-height: calc(2 * 1.1em + 0.66em);
+}
+.info:empty {
+  min-height: calc(2 * 1.6em);
+}
+@media (min-width: 900px) {
+  .soal:empty {
+    min-height: calc(1.1em + 0.66em);
+  }
+  .info:empty {
+    min-height: 1.6em;
+  }
+}
 .panah {
   display: inline-block;
   margin: 0 0.12em;
@@ -216,6 +232,11 @@ main,
   border-radius: 18px;
   background: var(--laut);
   box-shadow: inset 0 0 0 1px var(--garis-kuat);
+}
+/* pesan tempat peta sebelum datanya datang: tinggi = min(lebar × 0,8; 560px), sama dengan main.ts */
+.peta:empty {
+  aspect-ratio: 5 / 4;
+  max-height: 560px;
 }
 .peta svg {
   display: block;
